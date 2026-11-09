@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Екатерина Арбузова</title>
+<meta name="description" content="Запускаю медиа и каналы коммуникаций с нуля — от Telegram-канала до корпоративного портала. Кейсы, тексты, карьера.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Екатерина Арбузова">
+<meta property="og:description" content="Запускаю медиа и каналы коммуникаций с нуля — от Telegram-канала до корпоративного портала. Кейсы, тексты, карьера.">
+<meta property="og:url" content="https://arkatya.github.io/">
+<meta property="og:image" content="https://arkatya.github.io/assets/photo.jpg">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://arkatya.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* базовый сброс, который в артефакте давал скелет платформы */
+  html, body { margin: 0; }
+  img { max-width: 100%; }
+  /* Layout: одна колонка ~760px на бумажном фоне digesta; кейсы — белые карточки, метки — моно заглавными. */
+  :root {
+    --paper: #faf9f6; --card: #ffffff; --ink: #1a1916; --ink2: #3d3a33; --muted: #69655d; --faint: #716e64;
+    --border: #e8e4da; --rowline: #f2efe8; --track: #e7e3d9; --blue: #2c6bdf; --blue-tint: #f2f6fe;
+    --cover-bg: #2f3d4c; --cover-ink: #e9eef3;
+    /* фирменные цвета digesta: акцент «Итогов дня» и полоса роликов «Сюжет дня» */
+    --teal: #12a594; --teal-ink: #0d7d70; --mint-tint: #e4f3ef; --mint: #cfe9e4; --sand: #f1d9b8; --peach: #f0b49f;
+    --sans: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1a1815; --card: #232019; --ink: #f3f1ea; --ink2: #ded9cf; --muted: #9d988c; --faint: #8d867a;
+      --border: #34302a; --rowline: #2c2822; --track: #2e2a24; --blue: #7aa5f2; --blue-tint: #18233a;
+      --cover-bg: #2a3644; --cover-ink: #e9eef3;
+      --teal: #3ec7b3; --teal-ink: #6fd8c8; --mint-tint: #16302b; --mint: #2f5650; --sand: #5a4a33; --peach: #5c3a2f; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1a1815; --card: #232019; --ink: #f3f1ea; --ink2: #ded9cf; --muted: #9d988c; --faint: #8d867a;
+    --border: #34302a; --rowline: #2c2822; --track: #2e2a24; --blue: #7aa5f2; --blue-tint: #18233a;
+    --cover-bg: #2a3644; --cover-ink: #e9eef3;
+    --teal: #3ec7b3; --teal-ink: #6fd8c8; --mint-tint: #16302b; --mint: #2f5650; --sand: #5a4a33; --peach: #5c3a2f; color-scheme: dark;
+  }
+
+  body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+  .wrap { max-width: 760px; margin: 0 auto;
+          padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+  .label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+
+  nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); }
+  nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+               background: linear-gradient(90deg, var(--mint), var(--sand) 55%, var(--peach)); }
+  nav .wrap { display: flex; align-items: center; justify-content: flex-end; gap: 18px; height: 50px; overflow-x: auto; white-space: nowrap; }
+  nav .me { font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin-right: auto; }
+  nav a.sec { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  nav a.sec:hover { color: var(--ink); text-decoration: none; }
+
+  header { padding-block: 48px 36px; display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 28px; align-items: center; }
+  .photo { width: 148px; aspect-ratio: 1; max-width: 100%; border-radius: 12px; object-fit: cover; display: block; background: var(--track); }
+  h1 { font-size: clamp(30px, 5vw, 40px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 6px; text-wrap: balance; }
+  .role { color: var(--ink); font-size: 21px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.35; margin: 0 0 14px; max-width: 34em; text-wrap: balance; }
+  .role-sub { display: block; margin-top: 6px; font-family: var(--mono); font-size: 14px; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+  .hero-tags { margin: 0 0 20px; }
+  .lead { font-size: 18px; line-height: 1.5; margin: 0 0 20px; max-width: 34em; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 8px; font-size: 15px; font-weight: 500;
+         border: 1px solid var(--border); background: var(--card); color: var(--ink); }
+  .btn:hover { text-decoration: none; border-color: var(--muted); }
+  .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn.primary:hover { background: var(--teal); border-color: var(--teal); color: #ffffff; }
+
+  section { padding-block: 36px; border-top: 1px solid var(--border); }
+  h2 { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 18px; }
+  h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; margin: 0; line-height: 1.3; }
+  p { margin: 0 0 12px; }
+  .about p { max-width: 38em; }
+
+  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+  .num { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; color: var(--ink); }
+  .num:hover { text-decoration: none; border-color: var(--teal); }
+  .num b { display: block; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--teal-ink); }
+  .num span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+  .cases { display: grid; gap: 14px; }
+  .case { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 22px 14px; }
+  .case-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+  .when { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 5px; background: var(--mint-tint); color: var(--teal-ink); }
+  .row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 4px 18px; padding-bottom: 10px; }
+  .row .label { padding-top: 4px; }
+  .row ul { margin: 0; padding-left: 18px; }
+  .row li { margin-bottom: 3px; }
+  .row b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .shelf-title { margin: 26px 0 8px; color: var(--teal-ink); }
+  .shelf-title:first-of-type { margin-top: 0; }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rowline); }
+  .list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 10px 0; border-bottom: 1px solid var(--rowline); align-items: baseline; }
+  .list .what { font-family: var(--mono); font-size: 11.5px; color: var(--faint); white-space: nowrap; }
+
+  .books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .book { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; align-items: start;
+          background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .cover { width: 92px; max-width: 100%; aspect-ratio: 3 / 4.4; border-radius: 4px; object-fit: cover; display: block; }
+  .cover.type { background: var(--cover-bg); color: var(--cover-ink); display: flex; align-items: flex-end; padding: 8px;
+                font-size: 12px; font-weight: 600; line-height: 1.15; }
+  .book .meta { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin: 4px 0 8px; }
+  .book p { font-size: 15px; margin-bottom: 6px; }
+
+  .path { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rowline); }
+  .path li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 4px 18px; padding: 10px 0; border-bottom: 1px solid var(--rowline); }
+  .path .y { font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .path b { font-weight: 600; }
+
+  .plain { margin: 0; padding-left: 18px; }
+  .plain li { margin-bottom: 6px; }
+  .plain .y { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-right: 8px; }
+
+  .contacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .contact { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+  .contact .v { display: flex; align-items: center; gap: 8px; margin-top: 4px; overflow-wrap: anywhere; }
+  .copy { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+          background: var(--track); border: 0; border-radius: 5px; padding: 3px 7px; cursor: pointer; flex: none; }
+  .email { user-select: all; }
+  footer { padding-block: 28px 48px; border-top: 1px solid var(--border); color: var(--faint); font-size: 13px; }
+
+  @media (max-width: 680px) {
+    header { grid-template-columns: 1fr; gap: 18px; padding-block: 32px 28px; }
+    .photo { width: 112px; }
+    .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .row, .path li { grid-template-columns: 1fr; }
+    .books, .contacts { grid-template-columns: 1fr; }
+    .list li { grid-template-columns: 1fr; }
+    .case { padding: 18px 16px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="sec" href="#cases">Кейсы</a>
+    <a class="sec" href="#texts">Тексты</a>
+    <a class="sec" href="#path">Карьера</a>
+    <a class="sec" href="#contacts">Контакты</a>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+<header>
+  <img class="photo" src="assets/photo.jpg" alt="Екатерина Арбузова" width="148" height="148">
+  <div>
+    <h1>Екатерина Арбузова</h1>
+    <p class="role">Запускаю медиа и каналы коммуникаций с нуля<span class="role-sub">от Telegram-канала до корпоративного портала</span></p>
+    <div class="tags hero-tags"><span class="tag">медиа</span><span class="tag">коммуникации</span><span class="tag">управление продуктом</span></div>
+    <div class="btns">
+      <a class="btn primary" href="https://t.me/arkatya" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn" href="https://www.linkedin.com/in/ekaterina-arbuzova/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <h2>Обо мне</h2>
+  <p>15+ лет опыта в медиа и коммуникациях: журналистика, PR, внутриком и управление цифровыми продуктами в корпорациях (ИНК, En+, Транснефть).</p>
+  <p>Сейчас вместе с партнёром работаю над проектом новостного ИИ-агрегатора digesta.news (сайт и Telegram-бот). Моя роль — продукт, тексты, продвижение.</p>
+  <p>Ищу работу, где нужно запускать новые проекты и направления: редакцию, контент и продвижение, продукт.</p>
+  <div class="nums">
+    <div class="num"><b>15+</b><span>лет в медиа и коммуникациях</span></div>
+    <a class="num" href="#case-portal"><b>×12</b><span>рост месячной аудитории интранета, 2017–2024</span></a>
+    <a class="num" href="#case-brif"><b>1 400+</b><span>подписчиков Telegram-канала форума — с нуля</span></a>
+    <a class="num" href="#case-tochka"><b>7 000+</b><span>подписчиков городского сообщества</span></a>
+  </div>
+</section>
+
+<section id="cases">
+  <h2>Кейсы</h2>
+  <div class="cases">
+
+  <article class="case" id="case-digesta">
+    <div class="case-head"><h3>digesta.news</h3><span class="when">2026 — сейчас</span></div>
+    <div class="tags"><span class="tag">продукт</span><span class="tag">контент</span><span class="tag">продвижение</span></div>
+    <div class="row"><span class="label">Задача</span><div>Вдвоём с партнёром запустить ИИ-сервис новостей: он собирает событие из сотен источников и показывает, где издания сходятся, а где расходятся.</div></div>
+    <div class="row"><span class="label">Что делала я</span><div><ul>
+      <li>Продукт: приоритеты, пользовательские сценарии, онбординг новых читателей. Разработка — на партнёре.</li>
+      <li>Позиционирование, голос продукта и все тексты.</li>
+      <li>Продвижение: блог с разборами на 5 языках, X на двух языках, тесты Telegram Ads, статьи на vc.ru, рассылки и квизы в боте; UTM-метки от источника до онбординга.</li>
+      <li>Аналитика воронки и удержания — и решения по ней.</li>
+    </ul></div></div>
+    <div class="row"><span class="label">Результат</span><div>Работающий продукт на <b>5 языках</b> (RU, EN, FR, ES, PT) — с сайтом и ботом в Telegram; работает с августа 2026. <b>150+</b> активных пользователей.</div></div>
+    <div class="row"><span class="label">Посмотреть</span><div><a href="https://digesta.news" target="_blank" rel="noopener">digesta.news</a> · <a href="https://digesta.news/ru/blog" target="_blank" rel="noopener">блог с разборами</a></div></div>
+  </article>
+
+  <article class="case" id="case-brif">
+    <div class="case-head"><h3>Байкальский риск-форум</h3><span class="when">2017–2025</span></div>
+    <div class="tags"><span class="tag">контент</span><span class="tag">Telegram</span><span class="tag">события</span></div>
+    <div class="row"><span class="label">Задача</span><div>Продвигать первый в Восточной Сибири и на Дальнем Востоке международный практический форум по управлению рисками.</div></div>
+    <div class="row"><span class="label">Что делала я</span><div><ul>
+      <li>С первого форума руководила командой продвижения и информационного сопровождения в связке с агентством.</li>
+      <li>С нуля создала Telegram-канал форума; рост — взаимопиар со спикерами, текстовые онлайн-трансляции с площадок, посевы в экспертных каналах.</li>
+      <li>Не только руководила: сама писала посты, редактировала, вела текстовые трансляции.</li>
+    </ul></div></div>
+    <div class="row"><span class="label">Результат</span><div><b>1 400+</b> подписчиков канала · <b>9</b> форумов подряд · <b>1 млн+</b> суммарный охват — просмотры трансляций, соцсети форума и публикации в СМИ · в 2024 году — 2 000 участников, 200 спикеров, 33 часа онлайн-трансляций.</div></div>
+    <div class="row"><span class="label">Посмотреть</span><div><a href="https://t.me/baikalriskforum" target="_blank" rel="noopener">t.me/baikalriskforum</a></div></div>
+  </article>
+
+  <article class="case" id="case-tochka">
+    <div class="case-head"><h3>«Точка Иркутска»</h3><span class="when">2020–2021 · En+ Group</span></div>
+    <div class="tags"><span class="tag">сообщества</span><span class="tag">стратегия</span></div>
+    <div class="row"><span class="label">Задача</span><div>Продвигать девелоперские проекты En+ Group через городское сообщество о комфортной среде — «каким должен быть город, в котором хочется жить».</div></div>
+    <div class="row"><span class="label">Что делала я</span><div><ul>
+      <li>Придумала идею и концепцию сообщества, написала коммуникационную стратегию.</li>
+      <li>Составляла и ревьюила медиапланы, запустила площадки в Telegram, Instagram и ВКонтакте.</li>
+    </ul></div></div>
+    <div class="row"><span class="label">Результат</span><div>Сообщество живёт и сегодня: <b>7 000+</b> подписчиков — 2 720 в Telegram, 2 157 в Instagram, около 2 000 во ВКонтакте, 18 выпусков подкаста о городе (октябрь 2026).</div></div>
+    <div class="row"><span class="label">Посмотреть</span><div><a href="https://t.me/Tochka_Irkutska" target="_blank" rel="noopener">t.me/Tochka_Irkutska</a></div></div>
+  </article>
+
+  <article class="case" id="case-portal">
+    <div class="case-head"><h3>ИНК-Портал — интранет как продукт</h3><span class="when">2014–2025 · Иркутская нефтяная компания</span></div>
+    <div class="tags"><span class="tag">внутриком</span><span class="tag">продукт</span><span class="tag">монетизация</span></div>
+    <div class="row"><span class="label">Задача</span><div>Сделать корпоративный портал для 16 000+ сотрудников местом, куда приходят каждый день, а не по обязанности.</div></div>
+    <div class="row"><span class="label">Что делала я</span><div><ul>
+      <li>Около десяти лет вела портал как продукт со стороны бизнеса — вместе с внутренними разработчиками и подрядчиками.</li>
+      <li>Продвигала его среди сотрудников, запускала сервисы самообслуживания.</li>
+      <li>В 2024 году запустила рекламу на портале и сделала медиакит для рекламодателей.</li>
+    </ul></div></div>
+    <div class="row"><span class="label">Результат</span><div>Месячная аудитория <b>×12</b> и дневная <b>+1200%</b> за 2017–2024 · глубина просмотра +38% · вовлечённость (ERR) +42% в 2024 · рутинные запросы решаются в <b>10–30 раз</b> быстрее · <b>800+ тыс. ₽</b> от рекламы с декабря 2024 по июнь 2026.</div></div>
+    <div class="row"><span class="label">Награды</span><div>Золото Russian Employee Experience Award 2025 · «Лучшее корпоративное медиа — 2019».</div></div>
+  </article>
+
+  </div>
+</section>
+
+<section id="texts">
+  <h2>Тексты</h2>
+
+  <p class="label shelf-title">Пишу сейчас</p>
+  <ul class="list">
+    <li><a href="https://digesta.news/ru/blog/zero-patient" target="_blank" rel="noopener">Нулевой пациент</a><span class="what">блог digesta · 2026</span></li>
+    <li><a href="https://digesta.news/ru/blog/boring-truth" target="_blank" rel="noopener">Истина где-то рядом</a><span class="what">блог digesta · 2026</span></li>
+    <li><a href="https://www.linkedin.com/posts/ekaterina-arbuzova_within-an-hour-of-the-flydubai-incident-share-7515983695543959552-CjrD/" target="_blank" rel="noopener">Within an hour of the flydubai incident…</a><span class="what">LinkedIn · en</span></li>
+    <li><a href="https://www.linkedin.com/posts/ekaterina-arbuzova_i-spent-all-of-2023-working-remotely-from-share-7518147336909537280-Xark/" target="_blank" rel="noopener">I spent all of 2023 working remotely…</a><span class="what">LinkedIn · en</span></li>
+  </ul>
+
+  <p class="label shelf-title">Пресса</p>
+  <ul class="list">
+    <li><a href="https://www.vsp.ru/2010/10/28/durdom/" target="_blank" rel="noopener">Дурдом</a><span class="what">репортаж · 2010</span></li>
+    <li><a href="https://www.vsp.ru/2012/10/04/kovykta-navsegda-2/" target="_blank" rel="noopener">Ковыкта навсегда</a><span class="what">репортаж · 2012</span></li>
+    <li><a href="https://www.vsp.ru/2012/04/26/namyok-na-roskosh/" target="_blank" rel="noopener">Намёк на роскошь</a><span class="what">обзор · 2012</span></li>
+    <li><a href="https://www.vsp.ru/sp-author/ekaterina-arbuzova/" target="_blank" rel="noopener">Аналитика и интервью — все материалы автора</a><span class="what">vsp.ru</span></li>
+  </ul>
+
+  <p class="label shelf-title">Корпоративная пресса</p>
+  <ul class="list">
+    <li><a href="https://www.worldfinance.com/markets/the-rapid-development-of-east-siberias-gas-processing-industry" target="_blank" rel="noopener">The rapid development of East Siberia’s gas processing industry</a><span class="what">World Finance · en</span></li>
+    <li><a href="https://www.worldfinance.com/markets/russias-irkutsk-oil-becomes-one-of-the-biggest-producers-of-oil-and-gas" target="_blank" rel="noopener">Russia’s Irkutsk Oil becomes one of the biggest producers of oil and gas</a><span class="what">World Finance · en</span></li>
+  </ul>
+
+  <p class="label shelf-title">Корпоративные книги</p>
+  <div class="books">
+    <div class="book">
+      <img class="cover" src="assets/cover2015.jpg" alt="Обложка книги «Нефть: большая игра для маленькой компании»" width="92" height="135">
+      <div>
+        <h3>Нефть: большая игра для маленькой компании</h3>
+        <p class="meta">2015 · 146 страниц</p>
+        <p>Соавтор, управление проектом.</p>
+        <p><a href="https://irkutskoil.ru/upload/iblock/936/2c6n6mzus9bza42s2dyqztkm6st6gwri.pdf" target="_blank" rel="noopener">Читать (PDF)</a></p>
+      </div>
+    </div>
+    <div class="book">
+      <img class="cover" src="assets/cover2022.jpg" alt="Обложка книги «После нефти»" width="92" height="134">
+      <div>
+        <h3>После нефти</h3>
+        <p class="meta">2022 · новая история сырьевой компании</p>
+        <p>Соавтор, управление проектом.</p>
+        <p>Премия «Медиалидер».</p>
+        <p><a href="https://media-leader.ru/contest/projects/project_2505.html" target="_blank" rel="noopener">Проект на сайте «Медиалидера»</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <h2>Карьера</h2>
+  <ul class="path">
+    <li><span class="y">2026 — сейчас</span><span><b>digesta.news</b> — сооснователь: продукт, тексты, продвижение</span></li>
+    <li><span class="y">2021 — сейчас</span><span><b>Иркутская нефтяная компания</b> — руководитель направления внутренних коммуникаций</span></li>
+    <li><span class="y">2020–2021</span><span><b>En+ Group</b> — PR-консультант девелоперских проектов</span></li>
+    <li><span class="y">2014–2021</span><span><b>Иркутская нефтяная компания</b> — внешний PR</span></li>
+    <li><span class="y">2013–2014</span><span><b>Транснефть</b> — связи с общественностью</span></li>
+    <li><span class="y">2006–2013</span><span><b>Издательство «Восточно-Сибирская правда»</b> — корреспондент, редактор отдела экономики</span></li>
+  </ul>
+</section>
+
+<section id="awards">
+  <h2>Награды</h2>
+  <ul class="plain">
+    <li><span class="y">2025</span>Russian Employee Experience Award, золото — «Лучший проект по применению инструментов ИИ в работе с сотрудниками» (ИНК-Портал)</li>
+    <li><span class="y">2022</span>«Медиалидер» — книга «После нефти»</li>
+    <li><span class="y">2019</span>«Лучшее корпоративное медиа — 2019» (ИНК-Портал)</li>
+    <li><span class="y">2016</span>«КонТЭКст» — лучший социальный проект (акция «Северный десант»)</li>
+  </ul>
+</section>
+
+<section id="edu">
+  <h2>Образование</h2>
+  <ul class="plain">
+    <li>Иркутский государственный университет — журналистика, 2009</li>
+    <li>Курсы: Product ownership (Британская высшая школа дизайна, 2022) · сквозная аналитика в маркетинге (ВШЭ, 2024) · бренд-менеджмент (БВШД, 2017)</li>
+    <li>Английский — C1, IELTS 7.5</li>
+  </ul>
+</section>
+
+<section id="contacts">
+  <h2>Контакты</h2>
+  <div class="contacts">
+    <div class="contact"><span class="label">Telegram</span><div class="v"><a href="https://t.me/arkatya" target="_blank" rel="noopener">@arkatya</a></div></div>
+    <div class="contact"><span class="label">Почта</span><div class="v"><span class="email" id="email">arbuzovakaterina@mail.ru</span><button class="copy" id="copy-email" type="button">копировать</button></div></div>
+    <div class="contact"><span class="label">LinkedIn</span><div class="v"><a href="https://www.linkedin.com/in/ekaterina-arbuzova/" target="_blank" rel="noopener">ekaterina-arbuzova</a></div></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">Екатерина Арбузова · 2026</div></footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById("copy-email");
+    var email = document.getElementById("email");
+    btn.addEventListener("click", function () {
+      var text = email.textContent.trim();
+      var done = function () { btn.textContent = "скопировано"; setTimeout(function () { btn.textContent = "копировать"; }, 1600); };
+      var select = function () { var r = document.createRange(); r.selectNodeContents(email); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "выделено"; };
+      try {
+        navigator.clipboard.writeText(text).then(done, select);
+      } catch (e) { select(); }
+    });
+  })();
+</script>
+</body>
+</html>
